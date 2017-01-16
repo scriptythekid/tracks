@@ -2,7 +2,12 @@
   <%= empty_message_holder("not_done", @not_done_todos.empty?) %>
 
   <%= show_grouped_todos %>
-
+  <!-- hack scripty -->
+  <script>
+  $(".container.context.collapsible").css("display","inline-block")
+  $(".container.context.collapsible").css("width","48%")
+  </script>
+  <!-- hack end -->
   <% if @group_view_by == 'project' -%>
     <%= show_todos_without_project(@todos_without_project) -%>
   <% end -%>
