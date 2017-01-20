@@ -2,10 +2,62 @@
   <%= empty_message_holder("not_done", @not_done_todos.empty?) %>
 
   <%= show_grouped_todos %>
+  
+  
+  ------------
+  <style>
+  .ubercontainer {display:table; width:100%;}
+  .rowcontainer {display: table-row; width: 100%; }
+  .rowcell {display: table-cell; border: 1px solid black;}
+  .container {width: 80%; float:left;clear: right;margin:10px; border-radius: 5px; border: 1px solid black;}
+  
+  .sortable { list-style-type: none; margin:0; padding:2px; min-height:30px; border-radius: 5px;}
+  .sortable li { margin: 3px 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px;}
+  .sortable li span { position: absolute; margin-left: -1.3em; }
+ 
+  .card{background-color:white;border-radius:3px;}
+  
+  .vertlabel{ writing-mode: vertical-lr; text-orientation: upright;}
+  .vertlabel2{ width:130px; height:50px; -webkit-transform:rotate(270deg); }
+  
+  </style>
+  <div class="ubercontainer">
+    
+  
+  
+  <% @contexts_to_show.in_groups_of(2, false) do |row_contexts| %>
+    <div class="rowcontainer">
+    <% for context in row_contexts %>
+      <% @not_done = @not_done_todos.select {|t| t.context_id == context.id } %>
+      <div class="rowcell"><%=
+      settings = {
+      :collapsible => true,
+      :show_empty_containers => @show_empty_containers,
+      :parent_container_type => @group_view_by
+      }
+    render :partial => 'todos/collection',
+      :object => @not_done,
+      :locals => { :settings => {
+        :id => "c#{context.id}",
+        :collapsible => settings[:collapsible],
+        :container_name => 'context',
+        :title => show_context_name(context),
+        :show_empty_containers => settings[:show_empty_containers],
+        :parent_container_type => settings[:parent_container_type]
+      }}
+  %></div>
+    <% end %>
+    </div>
+  <% end %>
+  </div>
+  
+  
+  
+  
   <!-- hack scripty -->
   <script>
   $(".container.context.collapsible").css("display","inline-block")
-  $(".container.context.collapsible").css("width","48%")
+  $(".container.context.collapsible").css("width","47%")
   </script>
   <!-- hack end -->
   <% if @group_view_by == 'project' -%>
@@ -13,6 +65,10 @@
   <% end -%>
 
   <%= show_done_todos(@done, {:parent_container_type => @group_view_by, :collapsible => true}) unless @done.nil? %>
+  
+  lalalal
+  
+  
 </div>
 
 <div id="input_box">

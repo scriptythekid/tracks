@@ -29,6 +29,16 @@ module TodosHelper
       :parent_container_type => @group_view_by
     })})
   end
+  
+  def show_grouped_todos_4quadrants
+    collection = (@group_view_by == 'context') ? @contexts_to_show : @projects_to_show
+    render(:partial => collection, :locals => { :settings => settings.reverse_merge!({
+      :collapsible => true,
+      :show_empty_containers => @show_empty_containers,
+      :parent_container_type => @group_view_by
+    })})
+  end
+    
 
   def default_collection_settings
     {

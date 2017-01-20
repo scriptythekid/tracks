@@ -22,7 +22,7 @@ gem 'jquery-ui-rails'
 # always possible on all platforms
 # Alternatively use --without <group> arguments to bundler to not install that group
 gem "sqlite3", group: :sqlite
-gem "mysql2", "~> 0.3.17", group: :mysql
+#gem "mysql2", "~> 0.3.17", group: :mysql
 
 gem "RedCloth"
 gem "sanitize", ">=3.0.0"
@@ -57,6 +57,7 @@ group :development do
   gem "bullet"
   gem "rack-mini-profiler"
   gem "rack-dev-mark"
+  gem 'xray-rails'
 end
 
 group :development, :test do
