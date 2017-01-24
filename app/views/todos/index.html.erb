@@ -1,14 +1,14 @@
 <div id="display_box">
   <%= empty_message_holder("not_done", @not_done_todos.empty?) %>
 
-  <%= show_grouped_todos %>
+  <%#= show_grouped_todos %>
   
   
   
   <style>
   .ubercontainer {display:table; width:100%;}
   .rowcontainer {display: table-row; width: 100%; }
-  .rowcell {display: table-cell; border: 1px solid black;}
+  .rowcell {display: table-cell; border: 0px solid black; width: 48%; vertical-align: top;}
   .container {width: 80%; float:left;clear: right;margin:10px; border-radius: 5px; border: 1px solid black;}
   
   .sortable { list-style-type: none; margin:0; padding:2px; min-height:30px; border-radius: 5px;}
@@ -57,7 +57,7 @@
   <!-- hack scripty -->
   <script>
   $(".container.context.collapsible").css("display","inline-block")
-  $(".container.context.collapsible").css("width","47%")
+  $(".container.context.collapsible").css("width","97%")
   </script>
   <!-- hack end -->
   <% if @group_view_by == 'project' -%>
